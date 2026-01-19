@@ -29,21 +29,3 @@ struct Zone: Identifiable, Decodable {
         self.coordinates = coordinates
     }
 }
-
-//struct GeoJSON: Decodable {
-//    let features: [Feature]
-//}
-//
-//struct Feature: Decodable {
-//    let properties: Properties
-//    let geometry: Geometry
-//}
-//
-//struct Properties: Decodable {
-//    let id: String
-//}
-//
-//struct Geometry: Decodable {
-//    let type: String
-//    let coordinates: [[[[Double]]]]
-//}
