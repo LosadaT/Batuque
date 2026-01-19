@@ -1,0 +1,49 @@
+//
+//  SwiftUIView.swift
+//  Batuque
+//
+//  Created by Francisco Losada on 16/01/26.
+//
+
+import SwiftUI
+import MapKit
+
+struct Zone: Identifiable, Decodable {
+    let id: String
+    var coordinates: [CLLocationCoordinate2D]
+    
+    enum CodingKeys: String, CodingKey {
+        case id, coordinates
+    }
+    
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(String.self, forKey: .id)
+        
+        let rawCoordinates = try container.decode([[Double]].self, forKey: .coordinates)
+        var coordinates = [CLLocationCoordinate2D]()
+        for rawVertex in rawCoordinates {
+            coordinates.append(.init(latitude: rawVertex[1], longitude: rawVertex[0]))
+        }
+        self.coordinates = coordinates
+    }
+}
+
+//struct GeoJSON: Decodable {
+//    let features: [Feature]
+//}
+//
+//struct Feature: Decodable {
+//    let properties: Properties
+//    let geometry: Geometry
+//}
+//
+//struct Properties: Decodable {
+//    let id: String
+//}
+//
+//struct Geometry: Decodable {
+//    let type: String
+//    let coordinates: [[[[Double]]]]
+//}

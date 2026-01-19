@@ -1,12 +1,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var mapModel: MapViewModel
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack {
+            ZonesMapView()
+                .ignoresSafeArea()
+                .navigationDestination(isPresented: Binding(get: {
+                    mapModel.selectedZone != nil
+                }, set: { isPresented in
+                    if !isPresented {
+                        mapModel.selectedZone = nil
+                    }
+                })) {
+                    ZoneDetailView()
+                }
         }
     }
 }
