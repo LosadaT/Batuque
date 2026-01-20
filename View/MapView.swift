@@ -3,7 +3,6 @@ import MapKit
 
 struct MapView: UIViewRepresentable {
     @EnvironmentObject var mapVM: MapViewModel
-    @Binding var stateSelected: Zone?
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = mapVM.mkMapView
@@ -58,8 +57,6 @@ struct MapView: UIViewRepresentable {
             if let zone = parent.mapVM.zoneOfLocation(location) {
                 parent.mapVM.selectedZone = zone
                 print(zone.id)
-                parent.stateSelected = zone
-
             }
         }
     }

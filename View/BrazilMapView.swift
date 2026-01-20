@@ -10,7 +10,6 @@ import MapKit
 
 struct BrazilMapView: UIViewRepresentable {
     @EnvironmentObject var mapVM: MapViewModel
-    @Binding var stateSelected: Zone?
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = mapVM.mkMapView

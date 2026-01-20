@@ -2,62 +2,45 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var mapModel: MapViewModel
-    @State var stateSelected: Zone?
     @State var stateGenre: [String] = []
+    @State var selectedGenre: String?
+    
+    var genreVM = GenreViewModel()
     
     var body: some View {
         if #available(iOS 17.0, *) {
             NavigationSplitView {
                 if mapModel.selectedZone?.id != nil {
-                    ForEach(stateGenre, id: \.self) { state in
-                        Text(state)
+                    List(stateGenre, id: \.self) { genre in
+                        Label(genre, systemImage: "heart.fill")
+                            .tag(genre)
+                            .onTapGesture {
+                                selectedGenre = genre
+                            }
                     }
                 }
+                else {
+                    Text("Click on an highlight state to learn more about his music!")
+                        .multilineTextAlignment(.center)
+                }
                 
-                //            Text("\(mapModel.selectedZone?.id)")
-                
-                
+            } content: {
+                if selectedGenre != nil {
+                    genreVM.getGenreInfo(genre: selectedGenre!)
+                }
             } detail: {
                 ZStack {
-                    MapView(stateSelected: $stateSelected)
+                    MapView()
                         .ignoresSafeArea()
-                    BrazilMapView(stateSelected: $stateSelected)
+                    BrazilMapView()
                         .ignoresSafeArea()
-                    //                .onTapGesture {
-                    //                    stateSelected = mapModel.selectedZone
-                    //                    print("\(mapModel.selectedZone)")
-                    //                }
-                    //                .navigationDestination(isPresented: Binding(get: {
-                    //                    mapModel.selectedZone != nil
-                    //                }, set: { isPresented in
-                    //                    if !isPresented {
-                    //                        mapModel.selectedZone = nil
-                    //                    }
-                    //                })) {
-                    //                    ZoneDetailView()
-                    //                }
                 }
             }
             .onChange(of: mapModel.selectedZone?.id) {
                 if let selectedState = mapModel.selectedZone?.id {
-                    stateGenre = getState(state: selectedState)
+                    stateGenre = genreVM.getStateGenre(state: selectedState)
                 }
             }
-        } else {
-            // Fallback on earlier versions
-        }
-    }
-    
-    func getState(state: String) -> [String] {
-        switch state {
-        case "RJ":
-            return ["Samba-Enredo", "Partido-Alto"]
-        case "BA":
-            return ["Baião", "Olodum", "Axé"]
-        case "PE":
-            return ["Maracatu", "Frevo", ]
-        default:
-            return []
-        }
+        } else { }
     }
 }

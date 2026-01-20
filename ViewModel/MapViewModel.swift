@@ -8,7 +8,7 @@ final class MapViewModel: ObservableObject {
     @Published var selectedZone: Zone?
     
     let states: [Zone] = {
-        let url = Bundle.main.url(forResource: "br_states-2", withExtension: "json")!
+        let url = Bundle.main.url(forResource: "states", withExtension: "json")!
         let decoder = JSONDecoder()
         return try! decoder.decode([Zone].self, from: Data(contentsOf: url))
     }()

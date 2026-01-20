@@ -8,7 +8,7 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "Batuque",
+    name: "Ritmo",
     platforms: [
         .iOS("16.0")
     ],
@@ -16,12 +16,12 @@ let package = Package(
         .iOSApplication(
             name: "Batuque",
             targets: ["AppModule"],
-            bundleIdentifier: "com.franciscolosada.Batuque",
+            bundleIdentifier: "com.franciscolosada.Ritmo",
             teamIdentifier: "F3W4MZ6T78",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .sparkle),
-            accentColor: .presetColor(.cyan),
+            accentColor: .presetColor(.yellow),
             supportedDeviceFamilies: [
                 .pad,
                 .phone
