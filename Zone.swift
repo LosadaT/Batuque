@@ -29,3 +29,9 @@ struct Zone: Identifiable, Decodable {
         self.coordinates = coordinates
     }
 }
+
+enum States {
+    case RJ, BA, PE
+}
+
+
