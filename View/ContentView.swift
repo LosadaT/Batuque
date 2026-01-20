@@ -19,10 +19,9 @@ struct ContentView: View {
                 
             } detail: {
                 ZStack {
-                    BrazilMapView(stateSelected: $stateSelected)
-                        .ignoresSafeArea()
-
                     MapView(stateSelected: $stateSelected)
+                        .ignoresSafeArea()
+                    BrazilMapView(stateSelected: $stateSelected)
                         .ignoresSafeArea()
                     //                .onTapGesture {
                     //                    stateSelected = mapModel.selectedZone

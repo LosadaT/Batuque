@@ -26,7 +26,7 @@ final class MapViewModel: ObservableObject {
             let renderer = MKPolygonRenderer(polygon: polygon)
             let mapPoint = MKMapPoint(location)
             let rendererPoint = renderer.point(for: mapPoint)
-            if renderer.path.contains(rendererPoint) {
+            if renderer.path.contains(rendererPoint) && index < states.count{
                 return states[index]
             }
         }

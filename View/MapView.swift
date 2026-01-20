@@ -57,6 +57,7 @@ struct MapView: UIViewRepresentable {
             let location = mapView.convert(tapLocation, toCoordinateFrom: mapView)
             if let zone = parent.mapVM.zoneOfLocation(location) {
                 parent.mapVM.selectedZone = zone
+                print(zone.id)
                 parent.stateSelected = zone
 
             }
