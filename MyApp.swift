@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(iOS 17.0, *)
 @main
 struct MyApp: App {
     @StateObject private var mapModel = MapViewModel()
@@ -8,6 +9,7 @@ struct MyApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(mapModel)
+
         }
     }
 }

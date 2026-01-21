@@ -5,7 +5,6 @@
 //  Created by Francisco Losada on 20/01/26.
 //
 
-import Foundation
 import SwiftUI
 
 extension Label {

@@ -1,18 +1,20 @@
 import SwiftUI
 
+@available(iOS 17.0, *)
 struct ContentView: View {
     @EnvironmentObject var mapModel: MapViewModel
     @State var stateGenre: [String] = []
     @State var selectedGenre: String?
-    
+    @State var columnVisibility = NavigationSplitViewVisibility.doubleColumn
+
     var genreVM = GenreViewModel()
     
     var body: some View {
-        if #available(iOS 17.0, *) {
-            NavigationSplitView {
+            NavigationSplitView(columnVisibility: $columnVisibility) {
                 if mapModel.selectedZone?.id != nil {
                     List(stateGenre, id: \.self) { genre in
                         Label(genre, systemImage: "heart.fill")
+                            .labelColor()
                             .tag(genre)
                             .onTapGesture {
                                 selectedGenre = genre
@@ -28,10 +30,15 @@ struct ContentView: View {
                 if selectedGenre != nil {
                     genreVM.getGenreInfo(genre: selectedGenre!)
                 }
+                else {
+                    Text("Click on an highlight state to learn more about his music!")
+
+                }
             } detail: {
                 ZStack {
                     MapView()
                         .ignoresSafeArea()
+                    
                     BrazilMapView()
                         .ignoresSafeArea()
                 }
@@ -39,8 +46,8 @@ struct ContentView: View {
             .onChange(of: mapModel.selectedZone?.id) {
                 if let selectedState = mapModel.selectedZone?.id {
                     stateGenre = genreVM.getStateGenre(state: selectedState)
+                    columnVisibility = NavigationSplitViewVisibility.all
                 }
             }
-        } else { }
     }
 }
