@@ -52,6 +52,7 @@ struct GenreView: View {
                     Text(!isPlaying ? "Play" : "Pause")
                         .textColor()
                         .font(.title3)
+                        .fontWeight(.semibold)
     
                     Spacer()
                 }

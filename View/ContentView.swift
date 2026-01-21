@@ -6,6 +6,7 @@ struct ContentView: View {
     @State var stateGenre: [String] = []
     @State var selectedGenre: String?
     @State var columnVisibility = NavigationSplitViewVisibility.doubleColumn
+    @State private var selection: String?
 
     var genreVM = GenreViewModel()
     
@@ -13,12 +14,26 @@ struct ContentView: View {
             NavigationSplitView(columnVisibility: $columnVisibility) {
                 if mapModel.selectedZone?.id != nil {
                     List(stateGenre, id: \.self) { genre in
-                        Label(genre, systemImage: "heart.fill")
-                            .labelColor()
-                            .tag(genre)
-                            .onTapGesture {
-                                selectedGenre = genre
-                            }
+                        if selectedGenre == genre {
+                            Label(genre, systemImage: "heart.fill")
+                                .labelColor()
+                                .tag(genre)
+                                .onTapGesture {
+                                    selectedGenre = genre
+                                }
+                                .padding(8)
+                                .padding(.horizontal)
+                                .background(.yellow)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                        }
+                        else {
+                            Label(genre, systemImage: "heart.fill")
+                                .labelColor()
+                                .tag(genre)
+                                .onTapGesture {
+                                    selectedGenre = genre
+                                }
+                        }
                     }
                 }
                 else {
