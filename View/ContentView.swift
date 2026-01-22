@@ -5,6 +5,7 @@ struct ContentView: View {
     @EnvironmentObject var mapModel: MapViewModel
     @State var stateGenre: [String] = []
     @State var selectedGenre: String?
+    @State var itemLabel: String?
     @State var columnVisibility = NavigationSplitViewVisibility.doubleColumn
     @State private var selection: String?
 
@@ -24,7 +25,7 @@ struct ContentView: View {
                     
                     List(stateGenre, id: \.self) { genre in
                         if selectedGenre == genre {
-                            Label(genre, systemImage: "heart.fill")
+                            Label(genre, systemImage: genreVM.getLabel(genre: genre))
                                 .labelColor()
                                 .tag(genre)
                                 .onTapGesture {
@@ -36,7 +37,7 @@ struct ContentView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                         }
                         else {
-                            Label(genre, systemImage: "heart.fill")
+                            Label(genre, systemImage: genreVM.getLabel(genre: genre))
                                 .labelColor()
                                 .tag(genre)
                                 .onTapGesture {

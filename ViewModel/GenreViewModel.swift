@@ -22,6 +22,25 @@ struct GenreViewModel {
         }
     }
     
+    func getLabel(genre: String) -> String {
+        switch genre {
+        case "Axé":
+            return "burst.fill"
+        case "Frevo":
+            return "umbrella.fill"
+        case "Samba-Enredo":
+            return "party.popper.fill"
+        case "Partido-Alto":
+           return "hat.widebrim.fill"
+        case "Maracatu":
+            return "laser.burst"
+        case "Baião":
+            return "sun.min.fill"
+        default:
+            return "heart.fill"
+        }
+    }
+    
     @MainActor func getGenreInfo(genre: String) -> GenreView {
         switch genre {
         case "Axé":
