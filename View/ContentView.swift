@@ -13,6 +13,15 @@ struct ContentView: View {
     var body: some View {
             NavigationSplitView(columnVisibility: $columnVisibility) {
                 if mapModel.selectedZone?.id != nil {
+                    HStack {
+                        Text(mapModel.selectedZone!.id)
+                            .textColor()
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .padding(.horizontal)
+                        Spacer()
+                    }
+                    
                     List(stateGenre, id: \.self) { genre in
                         if selectedGenre == genre {
                             Label(genre, systemImage: "heart.fill")
@@ -47,8 +56,8 @@ struct ContentView: View {
                 }
                 else {
                     Text("Click on an highlight state to learn more about his music!")
-
                 }
+                
             } detail: {
                 ZStack {
                     MapView()

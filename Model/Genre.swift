@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum Genre {
-    case axe
-    case baiao
-    case olodum
-    case maracatu
-    case frevo
-    case sambaEnredo
-    case partidoAlto
-}
+//enum Genre {
+//    case axe
+//    case baiao
+//    case olodum
+//    case maracatu
+//    case frevo
+//    case sambaEnredo
+//    case partidoAlto
+//}

@@ -64,13 +64,15 @@ struct GenreView: View {
                 .background(.yellow)
                 .clipShape(RoundedRectangle(cornerRadius: 30))
                 
-                Text(text)
-                    .textColor()
-                    .font(.title3)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-                
+                ScrollView {
+                    Text(text)
+                        .textColor()
+                        .font(.title3)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
                 Spacer()
+                    
             }
             .onChange(of: genre) {
                 pauseAudio()
