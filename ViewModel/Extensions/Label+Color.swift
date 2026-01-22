@@ -11,6 +11,5 @@ extension Label {
     func labelColor() -> some View {
         self
             .foregroundStyle(Color(hex: 0x136900))
-        
     }
 }

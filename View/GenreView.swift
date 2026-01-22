@@ -48,12 +48,12 @@ struct GenreView: View {
                             .background(.white.opacity(0.5))
                             .clipShape(Circle())
                     }
-                    //.padding(.trailing)
+
                     Text(!isPlaying ? "Play" : "Pause")
                         .textColor()
                         .font(.title3)
                         .fontWeight(.semibold)
-    
+                    
                     Spacer()
                 }
                 .font(.title3)
@@ -72,7 +72,7 @@ struct GenreView: View {
                         .padding(.horizontal)
                 }
                 Spacer()
-                    
+                
             }
             .onChange(of: genre) {
                 pauseAudio()
@@ -87,8 +87,7 @@ struct GenreView: View {
         }
         
         if isPlaying {
-            audioPlayer?.pause()
-            isPlaying = false
+            pauseAudio()
         }
         else {
             do {

@@ -9,8 +9,9 @@ import SwiftUI
 import MapKit
 
 struct Zone: Identifiable, Decodable {
-    let id: String
     var coordinates: [CLLocationCoordinate2D]
+    
+    let id: String
     
     enum CodingKeys: String, CodingKey {
         case id, coordinates
@@ -23,6 +24,7 @@ struct Zone: Identifiable, Decodable {
         
         let rawCoordinates = try container.decode([[Double]].self, forKey: .coordinates)
         var coordinates = [CLLocationCoordinate2D]()
+        
         for rawVertex in rawCoordinates {
             coordinates.append(.init(latitude: rawVertex[1], longitude: rawVertex[0]))
         }
