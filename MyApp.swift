@@ -9,7 +9,6 @@ struct MyApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(mapModel)
-
         }
     }
 }
