@@ -15,7 +15,7 @@ struct ContentView: View {
             NavigationSplitView(columnVisibility: $columnVisibility) {
                 if mapModel.selectedZone?.id != nil {
                     HStack {
-                        Text(mapModel.selectedZone!.id)
+                        Text(genreVM.getState(state: mapModel.selectedZone!.id))
                             .textColor()
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -48,7 +48,10 @@ struct ContentView: View {
                 }
                 else {
                     Text("Click on an highlight state to learn more about his music!")
+                        .textColor()
                         .multilineTextAlignment(.center)
+                        .font(.title3)
+                        .padding()
                 }
                 
             } content: {
@@ -57,6 +60,9 @@ struct ContentView: View {
                 }
                 else {
                     Text("Click on an highlight state to learn more about his music!")
+                        .textColor()
+                        .font(.title3)
+                        .padding()
                 }
                 
             } detail: {

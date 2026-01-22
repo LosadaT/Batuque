@@ -41,6 +41,19 @@ struct GenreViewModel {
         }
     }
     
+    func getState(state: String) -> String {
+        switch state {
+        case "RJ":
+            return "Rio de Janeiro"
+        case "BA":
+            return "Bahia"
+        case "PE":
+            return "Pernambuco"
+        default:
+            return ""
+        }
+    }
+    
     @MainActor func getGenreInfo(genre: String) -> GenreView {
         switch genre {
         case "Axé":
